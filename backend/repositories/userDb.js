@@ -11,7 +11,7 @@ const conn = require("../connections/db.js");
 // }
 
 
-const fetchData = async(sql, cb)=>{
+const fetchData = (sql, cb)=>{
     let result;
     conn.query(sql,(err,res)=>{
         if(err){

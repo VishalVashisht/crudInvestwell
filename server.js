@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
-const conn = require("./connections/db.js");
-const router = require("./routes/routes.js");
+const conn = require("./backend/connections/db.js");
+const router = require("./backend/routes/routes.js");
 const path = require("path");
 var bodyParser = require("body-parser");
 
@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended:true }));
 app.use("/",router); 
 
 // calling CSS
-app.use(express.static(path.join(__dirname, "../frontend")));
+app.use(express.static(path.join(__dirname, "/frontend")));
 
 // running the port
 app.listen(9000,()=>{
