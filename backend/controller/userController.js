@@ -10,12 +10,10 @@ const showForm = (req,res)=>{
 
 // fetching all data from database
 const controlFetchData = (req,res) => {
-    // console.log(sFetchData);
-    // return serviceFetchData();
-    const result = serviceFetchData((err,result)=>{
-        return res.send(result);
-    });
-    return result;
+    
+    serviceFetchData().then((data)=>{
+        res.send(data);
+    })
 }
 
 // inserting new user

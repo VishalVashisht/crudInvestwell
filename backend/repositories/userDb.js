@@ -1,3 +1,4 @@
+const { resolve } = require("path");
 const conn = require("../connections/db.js");
 
 // Retrieve
@@ -11,20 +12,31 @@ const conn = require("../connections/db.js");
 // }
 
 
-const fetchData = (sql, cb)=>{
-    let result;
-    conn.query(sql,(err,res)=>{
-        if(err){
-            console.log(err);
-        }
-        else{
-            result=res;
-           return cb(null,result);
-            // return result;
-        }
+// const fetchData = (sql, cb)=>{
+//     let result;
+//     conn.query(sql,(err,res)=>{
+//         if(err){
+//             console.log(err);
+//         }
+//         else{
+//             result=res;
+//            return cb(null,result);
+//             // return result;
+//         }
+//     })
+// }
+
+
+const fetchData = (sql)=>{
+    return new Promise((resolve)=>{
+        conn.query(sql,(err,res)=>{
+            if(err){
+                console.log(err);
+            }
+            resolve(res);
+        })
     })
 }
-
 
 // Create
 const insertData = (sQuery)=>{
