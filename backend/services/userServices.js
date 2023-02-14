@@ -1,15 +1,12 @@
 const {fetchData,insertData,updateData,deleteData} = require("../repositories/userDb.js")
 
 
-const serviceFetchData = ()=>{
-    return new Promise((resolve)=>{
+const serviceFetchData = async()=>{
         const query = `select * from users`;
-        const result = fetchData(query)
-            result.then((data)=>{
-                // console.log(data);
-                resolve(data);
-            })
-    })
+        const result = await fetchData(query);
+        return new Promise((resolve)=>{
+            resolve(result);
+        })
 }
 
 

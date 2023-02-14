@@ -9,11 +9,10 @@ const showForm = (req,res)=>{
 }
 
 // fetching all data from database
-const controlFetchData = (req,res) => {
+const controlFetchData = async(req,res) => {
+    const t = await serviceFetchData();
+        res.send(t);
     
-    serviceFetchData().then((data)=>{
-        res.send(data);
-    })
 }
 
 // inserting new user

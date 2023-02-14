@@ -42,8 +42,24 @@ document.getElementById("signup-form").addEventListener("submit", (event) => {
     email : document.querySelector("#email").value,
     password : document.querySelector("#pass").value
   }
-  dataInsert(obj);
+
+  var regName = /^[A-Za-z]+$/;
+  if (obj.firstName === null || obj.firstName.match(regName)===null) {
+    alert('Please enter valid first name');
+    return false;
+  }
+
+  if (obj.lastName === null || obj.lastName.match(regName)===null) {
+    alert('Please enter valid first name');
+    return false;
+  }
+
+ dataInsert(obj);
 });
+
+
+
+
 
 
 
