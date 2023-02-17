@@ -27,10 +27,10 @@ const conn = require("../connections/db.js");
 // }
 
 
-const fetchData = async(sql)=>{
-    return new Promise((resolve)=>{
-        conn.query(sql,(err,res)=>{
-            if(err){
+const fetchData = async (sql) => {
+    return new Promise((resolve) => {
+        conn.query(sql, (err, res) => {
+            if (err) {
                 console.log(err);
             }
             resolve(res);
@@ -39,44 +39,58 @@ const fetchData = async(sql)=>{
 }
 
 // Create
-const insertData = (sQuery)=>{
-    return conn.query(sQuery,(err,results)=>{
-        if(err){
+const insertData = (sQuery) => {
+    return conn.query(sQuery, (err, results) => {
+        if (err) {
             console.log(err);
         }
-        else{
-            console.log("Records inserted: "+results.affectedRows);
+        else {
+            console.log("Records inserted: " + results.affectedRows);
         }
     });
 }
 
 // Update
-const updateData = (sQuery)=>{
-    return conn.query(sQuery,(err,results)=>{
-        if(err){
+const updateData = (sQuery) => {
+    return conn.query(sQuery, (err, results) => {
+        if (err) {
             console.log(err);
         }
-        else{
-            console.log("Records updated: "+results.affectedRows);
+        else {
+            console.log("Records updated: " + results.affectedRows);
         }
     });
 }
 
 // Delete
-const deleteData = (sQuery)=>{
-    return conn.query(sQuery,(err,results)=>{
-        if(err){
+const deleteData = (sQuery) => {
+    return conn.query(sQuery, (err, results) => {
+        if (err) {
             console.log(err);
         }
-        else{
-            console.log("Records Deleted: "+results.affectedRows);
+        else {
+            console.log("Records Deleted: " + results.affectedRows);
         }
     });
 }
+
+// login
+const userLogin = async (sql) => {
+    return new Promise((resolve) => {
+        conn.query(sql, (err, res) => {
+            if (err) {
+                console.log(err);
+            }
+            resolve(res);
+        })
+    })
+}
+
 
 module.exports = {
     fetchData,
     insertData,
     updateData,
-    deleteData
+    deleteData,
+    userLogin
 }

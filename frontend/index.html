@@ -1,107 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
-   
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registration Form</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+    crossorigin="anonymous"></script>
 </head>
+
 <body>
+  <br />
+  <header>
+    <img src="https://www.investwellonline.com/images/iwlogo.svg" alt="vishal vashisht" />
+    <btns>
+      <button id="home" onclick="location.reload()">Home</button>
+      <button id="about">About</button>
+      <!-- <button id="contact">Contact Us </button> -->
+      <button id="showData">Show Data</button>
+      <button id="signup">Sign Up</button>
+      <button id="login">Log In</button>
+    </btns>
+  </header>
+  <hr size="5px" noshade color="#f1dac4" />
+  <br />
+  <div>
+    <!--                                                           signup form                                                         -->
+    <form id="signup-form" style="display: none">
+      <h2>
+        <center>Sign Up</center>
+      </h2>
+      <label for="fname">First Name:</label>
+      <input type="text" id="fname" placeholder="Enter your first name" /><br /><br />
+
+      <label for="lname">Last Name:</label>
+      <input type="text" id="lname" placeholder="Enter your last name" /><br /><br />
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" placeholder="Enter your phone number" /><br /><br />
+
+      <label for="gender">Gender:</label>
+      <input type="text" id="gender" placeholder="Enter your gender" /><br /><br />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="Enter your email" /><br /><br />
+
+      <label for="pass">Password:</label>
+      <input type="password" id="pass" placeholder="Enter the password" /><br /><br />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <!--                                                login form                                                                -->
+
+    <form id="login-form" action="" style="display: none" method="get">
+      <h2>
+        <center>Login</center>
+      </h2>
+      <label for="username">Username:</label>
+      <input type="text" id="username" placeholder="Enter your mail" required />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" placeholder="Enter your password" required />
+
+      <button id="loginSubmit" type="submit">Submit</button>
+    </form>
+  </div>
+  <br />
+  <div class="container" style="display: none" id="block"></div>
+
+
+  <!--                                                     after login                                                                  -->
+  <div id="afterLogin" style="display: none">
+    <table id="afterLoginTable"></table>
     <br>
-    <header>
-        <img src="https://www.investwellonline.com/images/iwlogo.svg" alt="vishal vashisht">
-        <btns> 
-            <button id="home">Home</button>
-            <button id="about">About</button>
-            <button id="contact">Contact Us </button>
-            <button id="signup">Sign Up</button> 
-            <button id="login">Log In</button>
-            <button id="update">Update</button>
-        </btns>
-    </header>
-    <hr size=5px noshade color=#f1dac4>
+    <center>
+      <button id="update">Update</button>
+      <button id="delete_data" onclick="location.reload()">Delete</button>
+    </center>
     <br>
-    <div class="vishal">
-    <form id="signup-form"  style="display:none">
-        <label for="fname">First Name:</label>
-        <input type="text" id="fname" placeholder="Enter your first name" ><br><br>
-        
-        <label for="lname">Last Name:</label>
-        <input type="text" id="lname" placeholder="Enter your last name"><br><br>
-        
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" placeholder="Enter your phone number" ><br><br>
-        
-        <label for="gender">Gender:</label>
-        <input type="text" id="gender" placeholder="Enter your gender"><br><br>
-        
-        <label for="email">Email:</label>
-        <input type="email" id="email" placeholder="Enter your email" ><br><br>
-        
-        <label for="pass">Password:</label>
-        <input type="password" id="pass" placeholder="Enter the password" ><br><br>
-        <input type="submit" value="Submit"  >
-        
-      </form>
 
-      <form id="login-form" action="" style="display:none" method="get">
-        <h2>Login</h2>
-        <div class="form-group">
-          <label for="username">Username:</label>
-          <input type="text" id="username" name="username" required>
-        </div>
-        <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-      </div>
-      <br>
-      <div class="container" style="display:none" id="block"> 
-        
-      </div>
+    <div class="del" style="display: none">
+      <input type="number" id="del_data" />
+    </div>
 
-
-      <button id="show_data">Show Data</button>
-      <table class="showTable"></table>
+  </div>
 
 
 
-      <div class="del">
-        <input type="number" id="del_data">
-      </div>
-      <button id="delete_data">Delete </button>
-      <form id="updateForm"  style="display:none">
+  <!--                                                 update form                                                                -->
+  <form id="updateForm" style="display: none">
+    <div style="display: none">
+      <label for="Uuserid">Id to update:</label>
+      <input type="number" id="Uuserid" placeholder="Enter your id" /><br /><br />
 
-        <label for="Uuserid">Id to update:</label>
-        <input type="number" id="Uuserid" placeholder="Enter your id" ><br><br>
+    </div>
+    <label for="Ufname">First Name:</label>
+    <input type="text" id="Ufname" placeholder="Enter your first name" /><br /><br />
 
-        <label for="Ufname">First Name:</label>
-        <input type="text" id="Ufname" placeholder="Enter your first name" ><br><br>
-        
-        <label for="Ulname">Last Name:</label>
-        <input type="text" id="Ulname" placeholder="Enter your last name"><br><br>
-        
-        <label for="Uphone">Phone Number:</label>
-        <input type="tel" id="Uphone" placeholder="Enter your phone number" ><br><br>
-        
-        <label for="Ugender">Gender:</label>
-        <input type="text" id="Ugender" placeholder="Enter your gender"><br><br>
-        
-        <label for="Uemail">Email:</label>
-        <input type="email" id="Uemail" placeholder="Enter your email" ><br><br>
-        
-        <label for="Upass">Password:</label>
-        <input type="password" id="Upass" placeholder="Enter the password" ><br><br>
-        <input type="submit" value="Submit">
-        
-      </form>
- 
-      <script src="./script.js"></script>
+    <label for="Ulname">Last Name:</label>
+    <input type="text" id="Ulname" placeholder="Enter your last name" /><br /><br />
 
+    <label for="Uphone">Phone Number:</label>
+    <input type="tel" id="Uphone" placeholder="Enter your phone number" /><br /><br />
+
+    <label for="Ugender">Gender:</label>
+    <input type="text" id="Ugender" placeholder="Enter your gender" /><br /><br />
+
+    <label for="Uemail">Email:</label>
+    <input type="email" id="Uemail" placeholder="Enter your email" /><br /><br />
+
+    <label for="Upass">Password:</label>
+    <input type="password" id="Upass" placeholder="Enter the password" /><br /><br />
+    <input type="submit" value="Submit" />
+  </form>
+
+  <!--                                                   table printing                                                              -->
+  <table class="showTable"></table>
+
+  <script src="./script.js"></script>
 </body>
+
 </html>

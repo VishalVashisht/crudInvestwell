@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const router = express.Router();
-const {showForm, controlFetchData,controlInsertData,controlUpdateData,controlDeleteData} = require("../controller/userController.js")
+const {showForm, controlFetchData,controlInsertData,controlUpdateData,controlDeleteData,controlUserLogin} = require("../controller/userController.js")
 var bodyParser = require("body-parser");
 
 router.use(bodyParser.json());
@@ -21,5 +21,8 @@ router.post("/user/update", controlUpdateData);
 
 // delete data
 router.post("/user/delete", controlDeleteData);
+
+// login
+router.post("/user/login", controlUserLogin);
 
 module.exports = router;
