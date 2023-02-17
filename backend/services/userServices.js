@@ -44,7 +44,7 @@ const serviceDeleteData = (id) => {
 
 
 const serviceUserLogin = async (details) => {
-    const query = `select * from users where email ="${details.username}"`;
+    const query = `select * from users where email ="${details.username}" and pass = "${details.password}"`;
     const result = await userLogin(query);
     return new Promise((resolve) => {
         resolve(result);

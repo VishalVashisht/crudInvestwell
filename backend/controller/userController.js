@@ -19,12 +19,12 @@ const controlFetchData = async (req, res) => {
 const controlInsertData = (req, res) => {
     console.log("Post Called !!", req.body);
     const newUser = req.body;
+    // console.log(typeof newUser.password);
     return serviceInsertData(newUser);
 }
 
 
 const controlUpdateData = (req, res) => {
-    // console.log(req.body, "shaktiman vishal")
     const updateUserData = req.body;
     return serviceUpdateData(updateUserData);
 }
@@ -39,13 +39,10 @@ const controlUserLogin = async (req, res) => {
     console.log(details);
     const result = await serviceUserLogin(details);
     if (result.length == 0) {
-        res.send("No user found!!");
-    }
-    else if (result[0].pass === details.password) {
-        res.send(result[0]);
+        res.send("Invalid Credentials");
     }
     else {
-        res.send("Incorrect password!!");
+        res.send(result[0]);
     }
 }
 

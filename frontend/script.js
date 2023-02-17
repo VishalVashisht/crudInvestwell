@@ -30,6 +30,7 @@ document.getElementById("signup-form").addEventListener("submit", (event) => {
     gender: document.querySelector("#gender").value,
     email: document.querySelector("#email").value,
     password: document.querySelector("#pass").value,
+    cpassword: document.querySelector("#cpass").value,
   };
 
   var regName = /^[A-Za-z]+$/;
@@ -43,14 +44,19 @@ document.getElementById("signup-form").addEventListener("submit", (event) => {
     return false;
   }
 
-  dataInsert(obj);
-
-  document.querySelector("#fname").value = "";
-  document.querySelector("#lname").value = "";
-  document.querySelector("#phone").value = "";
-  document.querySelector("#gender").value = "";
-  document.querySelector("#email").value = "";
-  document.querySelector("#pass").value = "";
+  if(obj.password === obj.cpassword){
+    dataInsert(obj);
+    document.querySelector("#fname").value = "";
+    document.querySelector("#lname").value = "";
+    document.querySelector("#phone").value = "";
+    document.querySelector("#gender").value = "";
+    document.querySelector("#email").value = "";
+    document.querySelector("#pass").value = "";
+    document.querySelector("#cpass").value = "";
+  }
+  else{
+    alert("passwords are not same");
+  }
 
 });
 
@@ -60,7 +66,7 @@ document
   .getElementById("login-form")
   .addEventListener("submit", function (event) {
     event.preventDefault();
-
+    
     let obj = {
       username: document.getElementById("username").value,
       password: document.getElementById("password").value,
@@ -74,12 +80,13 @@ document
 /////////////////////////////////////////////////// After Login //////////////////////////////////////////////
 function afterLogin(result) {
   document.getElementById("login-form").style.display = "none";
-  document.getElementById("afterLogin").style.display = "block";
+  
 
 
   let str;
   if (typeof (result) === "string") {
     alert(result);
+    return;
   }
   else {
     str = `<tr class = "header">
@@ -95,18 +102,21 @@ function afterLogin(result) {
         <td>${result.gender}</td>
         <td>${result.email}</td>
         </tr>`;
+        document.getElementById("afterLogin").style.display = "block";
     const output = document.getElementById('afterLoginTable');
     output.innerHTML = str;
+
+    document.getElementById("update").addEventListener("click", () => {
+      document.getElementById("updateForm").style.display = "block";
+    });
+  
+    deleteDataBtn.addEventListener("click", () => {
+      deleteData(result.userId);
+    });
   }
 
 
-  document.getElementById("update").addEventListener("click", () => {
-    document.getElementById("updateForm").style.display = "block";
-  });
-
-  deleteDataBtn.addEventListener("click", () => {
-    deleteData(result.userId);
-  });
+  
   /////////////////////////////////////////////////////  Update  ///////////////////////////////////////////////
   document.getElementById("updateForm").addEventListener("click", (event) => {
     event.preventDefault();

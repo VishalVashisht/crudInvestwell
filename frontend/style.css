@@ -96,6 +96,15 @@ btns {
   border: none;
   cursor: pointer;
 }
+#logOut{
+  margin-right: 5px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
 
 form {
   align-content: left;

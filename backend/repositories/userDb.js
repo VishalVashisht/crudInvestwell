@@ -81,6 +81,7 @@ const userLogin = async (sql) => {
             if (err) {
                 console.log(err);
             }
+            // console.log(res);
             resolve(res);
         })
     })
