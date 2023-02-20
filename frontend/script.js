@@ -33,19 +33,19 @@ document.getElementById("signup-form").addEventListener("submit", (event) => {
     cpassword: document.querySelector("#cpass").value,
   };
 
-  var regName = /^[A-Za-z]+$/;
-  if (obj.firstName === null || obj.firstName.match(regName) === null) {
-    alert("Please enter valid first name");
-    return false;
-  }
+  // var regName = /^[A-Za-z]+$/;
+  // if (obj.firstName === null || obj.firstName.match(regName) === null) {
+  //   alert("Please enter valid first name");
+  //   return false;
+  // }
 
-  if (obj.lastName === null || obj.lastName.match(regName) === null) {
-    alert("Please enter valid first name");
-    return false;
-  }
+  // if (obj.lastName === null || obj.lastName.match(regName) === null) {
+  //   alert("Please enter valid first name");
+  //   return false;
+  // }
 
-  if(obj.password === obj.cpassword){
-    dataInsert(obj);
+  dataInsert(obj);
+
     document.querySelector("#fname").value = "";
     document.querySelector("#lname").value = "";
     document.querySelector("#phone").value = "";
@@ -53,18 +53,26 @@ document.getElementById("signup-form").addEventListener("submit", (event) => {
     document.querySelector("#email").value = "";
     document.querySelector("#pass").value = "";
     document.querySelector("#cpass").value = "";
-  }
-  else{
-    alert("passwords are not same");
-  }
+
+  // if(obj.password === obj.cpassword){
+  //   dataInsert(obj);
+  //   document.querySelector("#fname").value = "";
+  //   document.querySelector("#lname").value = "";
+  //   document.querySelector("#phone").value = "";
+  //   document.querySelector("#gender").value = "";
+  //   document.querySelector("#email").value = "";
+  //   document.querySelector("#pass").value = "";
+  //   document.querySelector("#cpass").value = "";
+  // }
+  // else{
+  //   alert("passwords are not same");
+  // }
 
 });
 
 
 ///////////////////////////////////////////////////// Login ////////////////////////////////////////////////
-document
-  .getElementById("login-form")
-  .addEventListener("submit", function (event) {
+document.getElementById("login-form").addEventListener("submit", function (event) {
     event.preventDefault();
     
     let obj = {
@@ -118,7 +126,7 @@ function afterLogin(result) {
 
   
   /////////////////////////////////////////////////////  Update  ///////////////////////////////////////////////
-  document.getElementById("updateForm").addEventListener("click", (event) => {
+  document.getElementById("updateForm").addEventListener("submit", (event) => {
     event.preventDefault();
     let obj = {
       id: result.userId,
@@ -153,7 +161,12 @@ function dataInsert(user) {
     type: "POST",
     data: user,
     success: function (result) {
-      console.log(result);
+      if(typeof result === "string"){
+        alert(result);
+      }else{
+        console.log(result);
+      }
+      
     },
     error: function (error) {
       console.log(error);
@@ -203,7 +216,12 @@ function updateData(user) {
     type: "POST",
     data: user,
     success: (result) => {
-      console.log("Record Updated");
+      // console.log("Record Updated");
+      if(typeof result === "string"){
+        alert(result);
+      }else{
+        console.log("Record Updated");
+      }
     },
     error: (error) => {
       console.log(error);
@@ -228,17 +246,20 @@ function deleteData(id) {
 
 // ajax to login
 function validation(details) {
-  // console.log(details);
   $.ajax({
     url: "http://localhost:9000/user/login",
     type: "POST",
     data: details,
     success: (result) => {
-      afterLogin(result);
-
+      // afterLogin(result);
+      if(typeof result === "string"){
+        alert(result);
+      }else{
+        afterLogin(result);
+      }
     },
     error: (error) => {
       console.log(error);
-    },
+    }
   });
 }

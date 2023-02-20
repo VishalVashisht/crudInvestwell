@@ -1,4 +1,5 @@
 const { resolve } = require("path");
+var CryptoJS = require("crypto-js");
 const { fetchData, insertData, updateData, deleteData, userLogin } = require("../repositories/userDb.js")
 
 
@@ -22,7 +23,8 @@ const serviceFetchData = async () => {
 
 const serviceInsertData = (newUser) => {
     const { firstName, lastName, phone, gender, email, password } = newUser;
-    const query = `insert into users (fname, lname, phone, gender, email, pass) values ("${firstName}", "${lastName}", "${phone}", "${gender}", "${email}", "${password}")`;
+    let encryptedPass = CryptoJS.AES.encrypt(password,"k4WQ,]+.C").toString();
+    const query = `insert into users (fname, lname, phone, gender, email, pass) values ("${firstName}", "${lastName}", "${phone}", "${gender}", "${email}", "${encryptedPass}")`;
     return insertData(query);
 }
 
@@ -44,7 +46,8 @@ const serviceDeleteData = (id) => {
 
 
 const serviceUserLogin = async (details) => {
-    const query = `select * from users where email ="${details.username}" and pass = "${details.password}"`;
+    // const query = `select * from users where email ="${details.username}" and pass = "${details.password}"`;
+    const query = `select * from users where email ="${details.username}"`;
     const result = await userLogin(query);
     return new Promise((resolve) => {
         resolve(result);
