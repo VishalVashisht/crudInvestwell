@@ -47,6 +47,7 @@ const controlUserLogin = async (req, res) => {
 
     var bytes = CryptoJS.AES.decrypt(result[0].pass, "k4WQ,]+.C");
     var originalText = bytes.toString(CryptoJS.enc.Utf8);
+    console.log(originalText);
     if(originalText!==details.password){
         return res.send("Invalid Credentials");
     }

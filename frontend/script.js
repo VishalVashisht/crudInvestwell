@@ -3,6 +3,7 @@ const showDataBtn = document.querySelector("#showData");
 const updateDataBtn = document.querySelector("update");
 const deleteDataBtn = document.querySelector("#delete_data");
 const del = document.querySelector("#del_data");
+var globalData = {};
 
 document.getElementById("signup").addEventListener("click", () => {
   document.getElementById("signup-form").style.display = "block";
@@ -88,8 +89,6 @@ document.getElementById("login-form").addEventListener("submit", function (event
 /////////////////////////////////////////////////// After Login //////////////////////////////////////////////
 function afterLogin(result) {
   document.getElementById("login-form").style.display = "none";
-  
-
 
   let str;
   if (typeof (result) === "string") {
@@ -114,15 +113,21 @@ function afterLogin(result) {
     const output = document.getElementById('afterLoginTable');
     output.innerHTML = str;
 
+    globalData = result;
+
     document.getElementById("update").addEventListener("click", () => {
       document.getElementById("updateForm").style.display = "block";
+      document.querySelector("#Ufname").value = result.fname;
+      document.querySelector("#Ulname").value = result.lname;
+      document.querySelector("#Uphone").value = result.phone;
+      document.querySelector("#Ugender").value = result.gender;
+      document.querySelector("#Uemail").value = result.email;
     });
   
     deleteDataBtn.addEventListener("click", () => {
       deleteData(result.userId);
     });
   }
-
 
   
   /////////////////////////////////////////////////////  Update  ///////////////////////////////////////////////
@@ -134,14 +139,14 @@ function afterLogin(result) {
       lastName: document.querySelector("#Ulname").value,
       phone: document.querySelector("#Uphone").value,
       gender: document.querySelector("#Ugender").value,
-      email: document.querySelector("#Uemail").value,
-      password: document.querySelector("#Upass").value,
+      // email: document.querySelector("#Uemail").value = globalData.email,
+      password: document.querySelector("#Upass").value
     };
     updateData(obj);
+
+    document.querySelector("#Upass").value = "";
   });
 }
-
-
 
 // show data
 showDataBtn.addEventListener("click", () => {

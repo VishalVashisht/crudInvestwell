@@ -18,6 +18,7 @@ const loginSchema = Joi.object({
 })
 
 const updateSchema = Joi.object({
+    id: Joi.number().required(),
     firstName: Joi.string().min(3).max(30).required(),
     lastName: Joi.string().min(3).max(30).required(),
     phone: Joi.string().length(10).pattern(/^\d+$/).required(),

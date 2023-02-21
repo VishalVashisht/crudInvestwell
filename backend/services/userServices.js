@@ -29,12 +29,13 @@ const serviceInsertData = (newUser) => {
 }
 
 const serviceUpdateData = (updateUser) => {
+    let encryptedPass = CryptoJS.AES.encrypt(updateUser.password,"k4WQ,]+.C").toString();
+
     const query = `update users set fname="${updateUser.firstName}",
     lname="${updateUser.lastName}",
     phone="${updateUser.phone}",
     gender="${updateUser.gender}",
-    email="${updateUser.email}",
-    pass="${updateUser.password}"
+    pass="${encryptedPass}"
     where userId = "${updateUser.id}"`;
     return updateData(query);
 }
